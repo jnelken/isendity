@@ -8,6 +8,7 @@ var sassMiddleware = require('node-sass-middleware');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var tags = require('./routes/api/tags');
 
 var app = express();
 
@@ -31,7 +32,14 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use('/', index);
+app.use('/api/tags', tags);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

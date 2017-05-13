@@ -3,7 +3,20 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor() {
+    super()
+    this.state = {}
+  }
+
+  componentWillMount() {
+    fetch('http://localhost:9000/api/tags').then(res => res.json().then(body => {
+      this.setState({ tags: body })
+    }))
+  }
+
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         <div className="App-header">

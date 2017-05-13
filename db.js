@@ -17,7 +17,7 @@ connection.connect();
 
 connection.query('SELECT * from tags', function(err, rows, fields) {
   if (!err)
-    console.log('The solution is: ', rows);
+    console.log('queries good');
   else
     console.log('Error while performing Query.', err);
 });
